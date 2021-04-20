@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Ek+Mukta:400,300,500,700,800");
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Ek Mukta', sans-serif;
+  background: #fff59d;
+}
+
+.coin-wrapper {
+  position: relative;
+  background: none;
+  overflow: hidden;
+  transform: none;
+  transform-origin: 50% 100%;
+  transition: opacity 200ms linear 100ms, transform 300ms ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.coin {
+  --front-y-multiplier: 0;
+  --back-y-multiplier: 0;
+  --coin-y-multiplier: 0;
+  --coin-x-multiplier: 0;
+  --coin-scale-multiplier: 0;
+  --coin-rotation-multiplier: 0;
+  --shine-opacity-multiplier: 0.2;
+  --shine-bg-multiplier: 50%;
+  left: calc(var(--coin-y-multiplier) * 1rem + 50% - 20rem);
+  height: 20rem;
+  position: absolute;
+  top: calc(var(--coin-x-multiplier) * 34% + 50% - 10rem);
+  transform: translateX(50%) scale(calc(0.4 + var(--coin-scale-multiplier))) rotate(calc(var(--coin-rotation-multiplier) * -1deg));
+  transition: opacity 100ms linear 200ms;
+  width: 20rem;
+}
+.coin__front, .coin__middle, .coin__back, .coin::before, .coin__front::after, .coin__back::after {
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+.coin__front {
+  content: '$';
+  color: #fbb041;
+  font-weight: bold;
+  text-align: center;
+  line-height: 20rem;
+  font-size: 14rem;
+  background: radial-gradient(
+    circle at 50% 50%, 
+    transparent 50%, 
+    #fbb041 51%, 
+    #f7941e 100%);
+  background-color: #f7941e;
+  background-size: 100% 100%;
+  transform: translateY(calc(var(--front-y-multiplier) * 0.3181818182rem / 2)) scaleY(var(--front-scale-multiplier));
+}
+.coin__front::after {
+  background: #fbb041;
+  content: "";
+  opacity: var(--front-y-multiplier);
+}
+.coin__middle {
+  background: #f7941e;
+  transform: translateY(calc(var(--middle-y-multiplier) * 0.3181818182rem / 2)) scaleY(var(--middle-scale-multiplier));
+}
+.coin__back {
+  content: '10';
+  color: #fbb041;
+  font-weight: bold;
+  text-align: center;
+  line-height: 20rem;
+  font-size: 14rem;
+  background: radial-gradient(
+    circle at 50% 50%, 
+    transparent 50%, 
+    #fbb041 51%, 
+    #f7941e 100%);
+  background-color: #f7941e;
+  background-size: 100% 100%;
+  transform: translateY(calc(var(--back-y-multiplier) * 0.3181818182rem / 2)) scaleY(var(--back-scale-multiplier));
+}
+.coin__back::after {
+  background: #fbb041;
+  opacity: var(--back-y-multiplier);
+}
+.coin::before {
+  background: radial-gradient(circle at 25% 65%, transparent 50%, rgba(255, 255, 255, 0.9) 90%), linear-gradient(55deg, transparent calc(var(--shine-bg-multiplier) + 0%), #e9f4ff calc(var(--shine-bg-multiplier) + 0%), transparent calc(var(--shine-bg-multiplier) + 50%));
+  content: "";
+  opacity: var(--shine-opacity-multiplier);
+  transform: translateY(calc(var(--middle-y-multiplier) * 0.3181818182rem / -2)) scaleY(var(--middle-scale-multiplier)) rotate(calc(var(--coin-rotation-multiplier) * 1deg));
+  z-index: 10;
+}
+.coin::after {
+  background: #fbb041;
+  content: "";
+  height: 0.3181818182rem;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 2;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(4deg);
+  }
+  66% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate();
+  }
+}
