@@ -5,8 +5,6 @@ coins.forEach((coin) => {
   coin.maxMoveLoopCount = 100
 
   coin.addEventListener('click', () => {
-    console.log(coin);
-
     if (coin.clicked) return
 
     coin.classList.add('clicked')
